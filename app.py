@@ -21,15 +21,19 @@ reddit = praw.Reddit(
     username=username,
 )
 
-url = "https://www.reddit.com/r/swans/comments/1c17v50/day_2_what_are_swans_fans_favorite_albums_outside/"
+url = "https://www.reddit.com/r/swans/comments/1c21ed3/day_3_what_are_swans_fans_favorite_albums_outside/"
 submission = reddit.submission(url=url)
 
 # top level comments only
 
+comments = ""
+
 for top_level_comment in submission.comments:
     if isinstance(top_level_comment, MoreComments):
         continue
-    print(top_level_comment.body)
+    comments += top_level_comment.body.replace('\n', '') + " "
+
+print(comments)
 
 
 # all comments
