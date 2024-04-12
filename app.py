@@ -1,7 +1,7 @@
 import praw
-from dotenv import load_dotenv
 import os
 
+from dotenv import load_dotenv
 from praw.models import MoreComments
 
 load_dotenv()
@@ -24,6 +24,16 @@ reddit = praw.Reddit(
 url = "https://www.reddit.com/r/swans/comments/1c17v50/day_2_what_are_swans_fans_favorite_albums_outside/"
 submission = reddit.submission(url=url)
 
+# top level comments only
 
 for top_level_comment in submission.comments:
+    if isinstance(top_level_comment, MoreComments):
+        continue
     print(top_level_comment.body)
+
+
+# all comments
+
+# submission.comments.replace_more(limit=None)
+# for comment in submission.comments.list():
+#     print(comment.body)
