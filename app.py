@@ -89,23 +89,41 @@ response = requests.post(url, data=data)
 if response.status_code == 200:
     # Extract the access token from the response JSON
     access_token = response.json()['access_token']
-    print("Access token:", access_token)
+    # print("Access token:", access_token)
 else:
     # Print an error message if the request failed
     print("Failed to get access token:", response.text)
 
 
-url = 'https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb'
 
-response = requests.get(url, headers={'Authorization': f'Bearer {access_token}'})
+# Define the base URL for the Spotify API
+url = 'https://api.spotify.com/v1/search'
+
+
+album = "Rubber Soul"
+artist = "Beatles"
+# Define the search query
+query = f'album:{album} artist:{artist}'
+
+# Define the parameters for the GET request
+params = {
+    'q': query,
+    'type': 'album',
+    'limit': 1  # Limit the number of results to 1 (optional)
+}
+
+# Make the GET request with the access token
+response = requests.get(url, params=params, headers={'Authorization': f'Bearer {access_token}'})
 
 # Check if the request was successful (status code 200)
 if response.status_code == 200:
-    # Print the response JSON
-    print(response.json())
+    # Extract the album details from the response JSON
+    album_details = response.json()['albums']['items'][0]
+    album_id = album_details['id']
+    print(f"album id for {artist} {album} is {album_id}")
 else:
     # Print an error message if the request failed
-    print("Failed to get artist details:", response.text)
+    print("Failed to search for album:", response.text)
 
 
 # create empty playlist
