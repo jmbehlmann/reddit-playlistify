@@ -13,12 +13,14 @@ auth_headers = {
     "client_id": client_id,
     "response_type": "code",
     "redirect_uri": "http://localhost:8080/callback",
-    "scope": "user-library-read"
+    "scope": "user-library-read playlist-modify-private playlist-modify-public"
 }
 
 # webbrowser.open("https://accounts.spotify.com/authorize?" + urlencode(auth_headers))
 
-code = "AQATjcNtovYKOjq0430MHJDp806HfiVp8zz3jX_82JLOo4vadXr2zcyTNcHyMcSMnnZhzUSlK3mGg2BGXY-t7eOu8stfavVAs7Ax-58eoEf9kTw380rJTdXyuc0SXPnP1uWerCHDL15y4nqqLYNG4pdyeznYYv2eYYffuB7cL4-jygw09lB35cmkp0oQPjZKmbXmYbI"
+# code will be in url of redirect window
+
+code = "AQAd5DIODq4d75Uep0p3Lkz5mNCdanbfuAyp7bxtkfhbTX9Qx8foZ_rZL4tBGz5fcAuOKXDFiPvYbNWV2whEh0X9sEHrWHKPLn5zlOdNjkX85AX_zMCMSaBq1KlYDH5VCGH2WNpqG0bIKK9Nyf2q5pSTxkMApJ83RJiuTNLva1jExlyPnljkhNXfQtIkdPDDWNrRozmMTUHBMnbDQW11FbvFNRnHPoD89-rLdyJeNuJawoYOvZZ1GJRDy1iJ2LuK6Mc6uNxZ"
 
 
 encoded_credentials = base64.b64encode(client_id.encode() + b':' + client_secret.encode()).decode("utf-8")
