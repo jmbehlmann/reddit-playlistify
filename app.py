@@ -56,20 +56,45 @@ data = {
      "temperature": 0
    }
 
-response = requests.post(url, headers=headers, json=data)
+# response = requests.post(url, headers=headers, json=data)
+
+# if response.status_code == 200:
+#     # Parse the JSON response
+#     response_json = response.json()
+
+#     # Extract the content from the response
+#     content = response_json['choices'][0]['message']['content']
+
+#     # Print or return the content
+#     print(content)
+# else:
+#     # Print an error message if the request failed
+#     print('Error:', response.text)
+
+
+url = "https://accounts.spotify.com/api/token"
+headers = {
+    'Content-Type': 'application/x-www-form-urlencoded',
+}
+
+data = {
+    'grant_type': 'client_credentials',
+    'client_id': os.environ.get('SPOTIFY_CLIENT_ID'),
+    'client_secret': os.environ.get('SPOTIFY_CLIENT_SECRET')
+}
+
+
+response = requests.post(url, data=data)
 
 if response.status_code == 200:
-    # Parse the JSON response
-    response_json = response.json()
-
-    # Extract the content from the response
-    content = response_json['choices'][0]['message']['content']
-
-    # Print or return the content
-    print(content)
+    # Extract the access token from the response JSON
+    access_token = response.json()['access_token']
+    print("Access token:", access_token)
 else:
     # Print an error message if the request failed
-    print('Error:', response.text)
+    print("Failed to get access token:", response.text)
+
+
 
 
 
@@ -78,3 +103,4 @@ else:
 #     get album id
 #     get all track ids for album
 #     add all tracks to playlist
+
