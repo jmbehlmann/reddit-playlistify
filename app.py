@@ -45,7 +45,7 @@ headers = {
     'Authorization': 'Bearer {}'.format(openai_key)
 }
 
-prompt = f"The following is a comment thread from reddit. Please find all of the albums referenced in the text and put them into a python list with both the artist and the album title combined into a single element in the list. You may need to remove any punctuation or any extra info so that each line is formatted as 'artist album'  {comments}"
+prompt = f"The following is a comment thread from reddit. Please find all of the albums referenced in the text and put them into a python list with both the artist and the album title combined into a single element in the list. Remove any duplicates so that each album only appears in the list once. You may need to remove any punctuation or any extra info so that each line is formatted as 'artist album'  {comments}"
 
 data = {
      "model": "gpt-3.5-turbo",
