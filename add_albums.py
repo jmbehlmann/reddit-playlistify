@@ -8,7 +8,14 @@ playlist_id = "5nt6uJH4N89CUMSOUnse3m"
 
 access_token = "BQC0SaQhAdhnMJIuCwwZTDwcKrxwDL1SKFsQjll1fyQU52LextEaOok3SWVhkwPczoNvrvX5sIMYSCOGzbi_kVcUeuJLBioUellhcsDzjyTsCCxrqrOGMJhTZvnLWhT52HLP5BV2Pl-1YR9jVgJYiISs_xMYnGYWMUt8mYZE6uKfVRhDEeSApA9Pibw7FTLsXSKQ4_BtSAOXS5VsgHxk9bdja9nwcFZzTNPrjWl5M3JlZnbtp7ppt8RKqg"
 
-albums = ['Slint Spiderland', 'Lingua Ignota Caligula', 'A promise xiu xiu', 'El-P’s I’ll Sleep When You’re Dead', 'Yo La Tengo I Can Heart the Heart Beating as One', 'Red King Crimson', 'Koyaanisqatsi by Philip Glass', 'Talk Talk Laughing Stock', 'The Microphones The Glow, Pt 2', 'my bloody valentine loveless', 'Glenn Branca The Ascension', 'Natural Snow Buildings The Dance of the Moon and the Sun', 'nine inch nails the fragile', 'Death Grips The Money Store', 'Radiohead Kid A', 'Low Secret Name', 'To Be Cruel Khantae', 'Laibach sketches of the red district', 'manic street preachers the holy bible', 'Lift Your Skinny Dick Like Antenna To Heaven', 'Pink Floyd Wish You Were Here', 'SPELLLING The Turning Wheel']
+track_ids = ['7K8mX41Nub7AzBt1RwwE6d', '55sPjd9D4VelNiR70Y1cCr', '3lhAQN2KNPh4G7RZ1hS5g5', '3oNP9Gh1NY4sjqaVUaNjTQ', '6AdyaWgJliC8HJU4CseNJM', '1BNZMXjqqULiV0DmFU1B8S']
+
+formatted_track_ids = []
+
+for track_id in track_ids:
+    formatted_track_ids.append(f'spotify:track:{track_id}')
+
+print(formatted_track_ids)
 
 album_id = "2NnkLRaeX33d1Mn8ZLgTo8"
 
@@ -23,7 +30,7 @@ headers = {
 
 # Define the data payload with the album ID
 data = {
-    'uris': [f'spotify:album:{album_id}']
+    'uris': formatted_track_ids
 }
 
 # Make the POST request to add the album to the playlist
