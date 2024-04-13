@@ -72,7 +72,7 @@ else:
 
 # albums = ['Slint Spiderland', 'Lingua Ignota Caligula', 'A promise xiu xiu', 'El-P’s I’ll Sleep When You’re Dead', 'Yo La Tengo I Can Heart the Heart Beating as One', 'Red King Crimson', 'Koyaanisqatsi by Philip Glass', 'Talk Talk Laughing Stock', 'The Microphones The Glow, Pt 2', 'my bloody valentine loveless', 'Glenn Branca The Ascension', 'Natural Snow Buildings The Dance of the Moon and the Sun', 'nine inch nails the fragile', 'Death Grips The Money Store', 'Radiohead Kid A', 'Low Secret Name', 'To Be Cruel Khantae', 'Laibach sketches of the red district', 'manic street preachers the holy bible', 'Lift Your Skinny Dick Like Antenna To Heaven', 'Pink Floyd Wish You Were Here', 'SPELLLING The Turning Wheel']
 
-
+# get spotify access token
 
 url = "https://accounts.spotify.com/api/token"
 headers = {
@@ -97,6 +97,7 @@ else:
     print("Failed to get access token:", response.text)
 
 
+# get album id
 
 # Define the base URL for the Spotify API
 url = 'https://api.spotify.com/v1/search'
@@ -128,6 +129,14 @@ else:
     # Print an error message if the request failed
     print("Failed to search for album:", response.text)
 
+url = "https://api.spotify.com/v1/me"
+headers = {
+    "Authorization": f'Bearer {access_token}'
+}
+
+response = requests.get(url, headers=headers)
+
+print(response.json())
 
 # create empty playlist
 # for each album
