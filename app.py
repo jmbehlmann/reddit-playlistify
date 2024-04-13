@@ -52,10 +52,14 @@ headers = {
     'Authorization': 'Bearer {}'.format(openai_key)
 }
 
+
+
+prompt = f"The following is a comment thread from reddit. Please find all of the albums referenced in the text and put them into a python dictionary. The key of each line should be the artist name and the value should be the album name. You may need to reorganize some of the comments in order to return a properly formatted dictionary:  {comments}"
+
 data = {
      "model": "gpt-3.5-turbo",
-     "messages": [{"role": "user", "content": "Say this is a test!"}],
-     "temperature": 0.7
+     "messages": [{"role": "user", "content": f"{prompt}"}],
+     "temperature": 0
    }
 
 response = requests.post(url, headers=headers, json=data)
