@@ -38,4 +38,6 @@ data = {
 
 response = requests.post(url, headers=headers, json=data)
 
-print(response.json())
+playlist_data = response.json()
+playlist_id = playlist_data['id']
+print(playlist_id)
