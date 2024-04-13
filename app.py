@@ -95,7 +95,17 @@ else:
     print("Failed to get access token:", response.text)
 
 
+url = 'https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb'
 
+response = requests.get(url, headers={'Authorization': f'Bearer {access_token}'})
+
+# Check if the request was successful (status code 200)
+if response.status_code == 200:
+    # Print the response JSON
+    print(response.json())
+else:
+    # Print an error message if the request failed
+    print("Failed to get artist details:", response.text)
 
 
 # create empty playlist
