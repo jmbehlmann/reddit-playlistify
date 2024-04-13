@@ -1,6 +1,7 @@
 import praw
 import os
 import requests
+import json
 
 from dotenv import load_dotenv
 from praw.models import MoreComments
@@ -48,7 +49,7 @@ headers = {
     'Authorization': 'Bearer {}'.format(openai_key)
 }
 
-prompt = f"The following is a comment thread from reddit. Please find all of the albums referenced in the text and put them into a python dictionary. The key of each line should be the artist name and the value should be the album name. You may need to reorganize some of the comments in order to return a properly formatted dictionary:  {comments}"
+prompt = f"The following is a comment thread from reddit. Please find all of the albums referenced in the text and put them into a python list with both the artist and the album title combined into a single element in the list. You may need to remove any punctuation or any extra info so that each line is formatted as 'artist album'  {comments}"
 
 data = {
      "model": "gpt-3.5-turbo",
@@ -56,20 +57,21 @@ data = {
      "temperature": 0
    }
 
-# response = requests.post(url, headers=headers, json=data)
+response = requests.post(url, headers=headers, json=data)
 
-# if response.status_code == 200:
-#     # Parse the JSON response
-#     response_json = response.json()
+if response.status_code == 200:
+    # Parse the JSON response
+    response_json = response.json()
 
-#     # Extract the content from the response
-#     content = response_json['choices'][0]['message']['content']
+    # Extract the content from the response
+    content = response_json['choices'][0]['message']['content']
+    albums = eval(content)
+    # print(albums[0])
+    # Print or return the content
+else:
+    # Print an error message if the request failed
+    print('Error:', response.text)
 
-#     # Print or return the content
-#     print(content)
-# else:
-#     # Print an error message if the request failed
-#     print('Error:', response.text)
 
 
 url = "https://accounts.spotify.com/api/token"
@@ -84,7 +86,7 @@ data = {
 }
 
 
-response = requests.post(url, data=data)
+# response = requests.post(url, data=data)
 
 if response.status_code == 200:
     # Extract the access token from the response JSON
@@ -103,7 +105,7 @@ url = 'https://api.spotify.com/v1/search'
 album = "Rubber Soul"
 artist = "Beatles"
 # Define the search query
-query = f'album:{album} artist:{artist}'
+query = f'{artist} {album}'
 
 # Define the parameters for the GET request
 params = {
@@ -113,7 +115,7 @@ params = {
 }
 
 # Make the GET request with the access token
-response = requests.get(url, params=params, headers={'Authorization': f'Bearer {access_token}'})
+# response = requests.get(url, params=params, headers={'Authorization': f'Bearer {access_token}'})
 
 # Check if the request was successful (status code 200)
 if response.status_code == 200:
