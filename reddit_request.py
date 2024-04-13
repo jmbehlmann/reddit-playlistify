@@ -23,7 +23,7 @@ url = "https://www.reddit.com/r/swans/comments/1c2n4y1/day_4_what_are_swans_fans
 submission = reddit.submission(url=url)
 title = submission.title
 # top level comments only
-
+print(title)
 comments = ""
 
 for top_level_comment in submission.comments:

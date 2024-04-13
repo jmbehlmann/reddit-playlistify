@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/jmbehlmann/Documents/projects/reddit-playlistify/.venv"
+VIRTUAL_ENV="/Users/jmbehlmann/Documents/projects/threadlistify/.venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
