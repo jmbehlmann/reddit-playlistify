@@ -1,5 +1,6 @@
 import praw
 import os
+import requests
 
 from dotenv import load_dotenv
 from praw.models import MoreComments
@@ -33,7 +34,7 @@ for top_level_comment in submission.comments:
         continue
     comments += top_level_comment.body.replace('\n', '') + " "
 
-print(comments)
+# print(comments)
 
 
 # all comments
@@ -41,3 +42,33 @@ print(comments)
 # submission.comments.replace_more(limit=None)
 # for comment in submission.comments.list():
 #     print(comment.body)
+
+
+url = "https://api.openai.com/v1/chat/completions"
+openai_key = os.environ.get('OPENAI_KEY')
+
+headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer {}'.format(openai_key)
+}
+
+data = {
+     "model": "gpt-3.5-turbo",
+     "messages": [{"role": "user", "content": "Say this is a test!"}],
+     "temperature": 0.7
+   }
+
+response = requests.post(url, headers=headers, json=data)
+
+if response.status_code == 200:
+    # Parse the JSON response
+    response_json = response.json()
+
+    # Extract the content from the response
+    content = response_json['choices'][0]['message']['content']
+
+    # Print or return the content
+    print(content)
+else:
+    # Print an error message if the request failed
+    print('Error:', response.text)
