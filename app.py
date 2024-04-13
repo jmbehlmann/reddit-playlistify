@@ -22,7 +22,7 @@ reddit = praw.Reddit(
     username=username,
 )
 
-url = "https://www.reddit.com/r/swans/comments/1c21ed3/day_3_what_are_swans_fans_favorite_albums_outside/"
+url = "https://www.reddit.com/r/swans/comments/1c2n4y1/day_4_what_are_swans_fans_favorite_albums_outside/"
 submission = reddit.submission(url=url)
 
 # top level comments only
@@ -34,15 +34,11 @@ for top_level_comment in submission.comments:
         continue
     comments += top_level_comment.body.replace('\n', '') + " "
 
-# print(comments)
-
-
 # all comments
 
 # submission.comments.replace_more(limit=None)
 # for comment in submission.comments.list():
 #     print(comment.body)
-
 
 url = "https://api.openai.com/v1/chat/completions"
 openai_key = os.environ.get('OPENAI_KEY')
@@ -51,8 +47,6 @@ headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer {}'.format(openai_key)
 }
-
-
 
 prompt = f"The following is a comment thread from reddit. Please find all of the albums referenced in the text and put them into a python dictionary. The key of each line should be the artist name and the value should be the album name. You may need to reorganize some of the comments in order to return a properly formatted dictionary:  {comments}"
 
@@ -76,3 +70,11 @@ if response.status_code == 200:
 else:
     # Print an error message if the request failed
     print('Error:', response.text)
+
+
+
+# create empty playlist
+# for each album
+#     get album id
+#     get all track ids for album
+#     add all tracks to playlist
