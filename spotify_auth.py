@@ -16,11 +16,11 @@ auth_headers = {
     "scope": "user-library-read playlist-modify-private playlist-modify-public"
 }
 
-# webbrowser.open("https://accounts.spotify.com/authorize?" + urlencode(auth_headers))
+webbrowser.open("https://accounts.spotify.com/authorize?" + urlencode(auth_headers))
 
 # code will be in url of redirect window
 
-code = "AQAd5DIODq4d75Uep0p3Lkz5mNCdanbfuAyp7bxtkfhbTX9Qx8foZ_rZL4tBGz5fcAuOKXDFiPvYbNWV2whEh0X9sEHrWHKPLn5zlOdNjkX85AX_zMCMSaBq1KlYDH5VCGH2WNpqG0bIKK9Nyf2q5pSTxkMApJ83RJiuTNLva1jExlyPnljkhNXfQtIkdPDDWNrRozmMTUHBMnbDQW11FbvFNRnHPoD89-rLdyJeNuJawoYOvZZ1GJRDy1iJ2LuK6Mc6uNxZ"
+code = "AQB6EieesaqduWoT66lH9vWNXPA8jwzk4DPRFP4FUCHIL0vZnCYMPUN3inObDj7Vz2k3ACCNNajvDn-dBX85r5pOzPXnmCxRDzePRKHJTCNLkI-GoE1JK2h91QSm3CMKCRxfLAcymkZuYttDWPuFrh1ucrpSwbXfZICL1L432amDOjV-_oe-4N3p4bDHUjqtT6XIjhdYJGFv4gigD-MRGbLn8O24nrD6ZXNBbFK6HNj0O6ByDIW_HY9m0hsJIgL0uTjl_4la"
 
 
 encoded_credentials = base64.b64encode(client_id.encode() + b':' + client_secret.encode()).decode("utf-8")
