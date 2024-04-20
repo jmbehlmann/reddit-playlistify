@@ -6,15 +6,7 @@ from praw.models import MoreComments
 
 def get_reddit_comments(thread_url):
     print("getting reddit comments")
-
     load_dotenv()
-
-    # client_id = os.environ.get('CLIENT_ID')
-    # client_secret = os.environ.get('CLIENT_SECRET')
-    # password = os.environ.get('PASSWORD')
-    # user_agent = os.environ.get('USER_AGENT')
-    # username = os.environ.get('USERNAME')
-
     reddit = praw.Reddit(
         client_id=os.environ.get('CLIENT_ID'),
         client_secret=os.environ.get('CLIENT_SECRET'),
@@ -22,11 +14,8 @@ def get_reddit_comments(thread_url):
         user_agent=os.environ.get('USER_AGENT'),
         username=os.environ.get('USERNAME'),
     )
-
-    url = thread_url
-    submission = reddit.submission(url=url)
+    submission = reddit.submission(url=thread_url)
     title = submission.title
-    # top level comments only
     print(title)
     comments = ""
 
@@ -63,17 +52,12 @@ def send_to_openai(comments):
     response = requests.post(url, headers=headers, json=data)
 
     if response.status_code == 200:
-        # Parse the JSON response
         response_json = response.json()
-
-        # Extract the content from the response
         content = response_json['choices'][0]['message']['content']
-
         # maybe change this to json.loads
-        albums = eval(content)
-        # print(albums[0])
+        # albums = eval(content)
+        albums = [item.strip() for item in content.split(',')]
     else:
-        # Print an error message if the request failed
         print('Error:', response.text)
 
     print("received data from openai")
@@ -108,50 +92,33 @@ def get_token(code):
 
 def get_album_ids(albums, access_token):
     print("getting album ids")
-
-    # Define the base URL for the Spotify API
     url = 'https://api.spotify.com/v1/search'
-
     album_ids = []
-
     for album in albums:
-
-        # Define the search query
         query = album
-
-        # Define the parameters for the GET request
         params = {
             'q': query,
             'type': 'album',
-            'limit': 1  # Limit the number of results to 1 (optional)
+            'limit': 1  # limit the number of results to 1 (optional)
         }
 
-        # Make the GET request with the access token
         response = requests.get(url, params=params, headers={'Authorization': f'Bearer {access_token}'})
 
-        # Check if the request was successful (status code 200)
         if response.status_code == 200:
-            # Extract the album details from the response JSON
             album_details = response.json()['albums']['items'][0]
             album_id = album_details['id']
             print(f"the album id for {album} is {album_id}")
             album_ids.append(album_id)
         else:
-            # Print an error message if the request failed
             print("Failed to search for album:", response.text)
-
     return album_ids
 
 def create_playlist(access_token, thread_url, title):
     url = "https://api.spotify.com/v1/me"
-
     response = requests.get(url, headers={'Authorization': f'Bearer {access_token}'})
 
     user_data = response.json()
     user_id = user_data['id']
-    print(user_id)
-
-
     url = f"https://api.spotify.com/v1/users/{user_id}/playlists"
     headers = {
         "Authorization": f"Bearer {access_token}",
@@ -174,52 +141,37 @@ def create_playlist(access_token, thread_url, title):
 
 # get track ids for each album
 def add_to_playlist(album_ids, playlist_id, access_token):
-
     print("getting track ids")
-
     for album_id in album_ids:
-
         track_ids = []
-
         url = f"https://api.spotify.com/v1/albums/{album_id}/tracks"
         headers = {
             "Authorization": f"Bearer {access_token}"
         }
 
         response = requests.get(url, headers=headers)
-
         tracks = response.json()
-
-        # Iterate over the items in the response JSON and extract the track IDs
+        # loop through the items in the response json and extract the track ids
         for item in tracks['items']:
             track_ids.append(item['id'])
 
         formatted_track_ids = []
-
         for track_id in track_ids:
             formatted_track_ids.append(f'spotify:track:{track_id}')
 
         url = f'https://api.spotify.com/v1/playlists/{playlist_id}/tracks'
 
-        # Define the headers with the access token
         headers = {
             'Authorization': f'Bearer {access_token}',
             'Content-Type': 'application/json'
         }
 
-        # Define the data payload with the album ID
         data = {
             'uris': formatted_track_ids
         }
 
-        # Make the POST request to add the album to the playlist
         response = requests.post(url, headers=headers, json=data)
 
-        # Check if the request was successful (status code 200)
-        # if response.status_code == 201:
-        #     print('Album added to playlist successfully!')
-        # else:
-        #     print('Failed to add album to playlist:', response.text)
         print("added an album")
 
 def main():
