@@ -31,24 +31,45 @@ Threadlistify is a Python application that utilizes various APIs to retrieve dat
 
 ## Usage
 
-1. Set up your environment variables by creating a `.env` file in the project directory. Include the following variables:
+1. **Obtain Reddit API Credentials:**
 
-    ```
-    CLIENT_ID=your_client_id
-    CLIENT_SECRET=your_client_secret
-    PASSWORD=your_reddit_password
-    USER_AGENT=your_user_agent
-    USERNAME=your_reddit_username
-    OPENAI_KEY=your_openai_key
+   - Create a Reddit application and obtain the client ID, client secret, password, user agent, and username.
+
+2. **Set Up Environment Variables:**
+
+   - Create a `.env` file in the project directory.
+   - Add the following environment variables to the `.env` file:
+     ```
+     CLIENT_ID=your_reddit_client_id
+     CLIENT_SECRET=your_reddit_client_secret
+     PASSWORD=your_reddit_password
+     USER_AGENT=your_reddit_user_agent
+     USERNAME=your_reddit_username
+     OPENAI_KEY=your_openai_api_key
+     SPOTIFY_CLIENT_ID=your_spotify_client_id
+     SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+     ```
+
+3. **Authenticate with Spotify:**
+
+    - Run the `spotify_auth.py` script to obtain the authorization code needed for accessing the Spotify API:
+
+    ```bash
+    python spotify_auth.py
     ```
 
-2. Run the main Python script to start the application:
+    Follow the prompts to authenticate with Spotify. A browser window will open with a code in the url, add that code to the main function.
 
-    ```
+4. **Run the Main Application:**
+
+    - Once you have obtained the Spotify authorization code, you can run the main application:
+
+    ```bash
     python main.py
     ```
 
-3. Follow the prompts to authorize the application, specify the Reddit thread URL, and complete the process.
+    The application will gather comments from a specified Reddit thread, extract album references, search for these albums on Spotify, and add them to a specified playlist.
+
 
 ## Dependencies
 

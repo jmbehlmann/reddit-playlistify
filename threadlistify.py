@@ -174,6 +174,8 @@ def add_to_playlist(album_ids, playlist_id, access_token):
 
 def main():
 
+    code = ""
+
     access_token = "BQDnZFqQsF8JE6oIqnrKX-YYC_Abmn7pFaUaB_YgUKnaU_nJohiqQ1tb5wRv8csstUXetQf9ICWXUFI3JTKhHKqG25iVcdjnj8pS0sad5I3QjD8ArFYqvDrJBHjo3PMgWBMfZPeEiQ1PBz4o-lznh0qlZDAONWdMgYq92GyWgsERlR-fELSUFO3zF8zyGc3jsTD4aM-dWV4lhmtre6tBTckxNN83pJJtfz6OCpnt_kcS_J-ooKb57ko7ig"
 
     playlist_id = "5nt6uJH4N89CUMSOUnse3m"
