@@ -1,8 +1,41 @@
 import praw, os, requests, json, base64
 from dotenv import load_dotenv
 from praw.models import MoreComments
+from urllib.parse import urlparse, parse_qs
+import webbrowser
 
-# get reddit comments from thread(top level comments only)
+
+def get_spotify_auth_code(url):
+    parsed_url = urlparse(url)
+    query_params = parse_qs(parsed_url.query)
+    auth_code = query_params.get('code', [None])[0]
+    return auth_code
+
+# propt user to input spotify code
+
+def get_spotify_code():
+    client_id = os.environ.get('SPOTIFY_CLIENT_ID')
+    redirect_uri = "http://localhost:8080/callback"
+
+    auth_url = f"https://accounts.spotify.com/authorize?client_id={client_id}&response_type=code&redirect_uri={redirect_uri}&scope=user-library-read%20playlist-modify-private%20playlist-modify-public"
+
+    webbrowser.open(auth_url)
+
+    try:
+        while True:
+            url = input("Enter the URL you were redirected to after authorizing: ")
+            auth_code = get_spotify_auth_code(url)
+            if auth_code:
+                print("Authorization code:", auth_code)
+                return auth_code
+            else:
+                print("No authorization code found in the URL.")
+    except KeyboardInterrupt:
+        print("\nExiting...")
+        exit()
+
+
+# get top level reddit comments
 
 def get_reddit_comments(thread_url):
     print("getting reddit comments")
@@ -177,9 +210,9 @@ def add_to_playlist(album_ids, playlist_id, access_token):
 
 def main():
     load_dotenv()
-    code = os.environ.get('SPOTIFY_AUTH_CODE')
     thread_url = os.environ.get('REDDIT_THREAD_URL')
 
+    code = get_spotify_code()
     comments, title = get_reddit_comments(thread_url)
     albums =  send_to_openai(comments)
     access_token = get_token(code)
