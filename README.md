@@ -55,6 +55,8 @@ Threadlistify is a Python application that utilizes various APIs to retrieve dat
      OPENAI_KEY=your_openai_api_key
      SPOTIFY_CLIENT_ID=your_spotify_client_id
      SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+     SPOTIFY_AUTH_CODE=code_from_spotify_auth
+     REDDIT_THREAD_URL=url_of_thread_you_want_to_threadlistify
      ```
 
 3. **Authenticate with Spotify:**
