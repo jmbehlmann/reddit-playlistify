@@ -3,14 +3,14 @@ from dotenv import load_dotenv
 from praw.models import MoreComments
 load_dotenv()
 
-thread = "https://www.reddit.com/r/swans/comments/1c2n4y1/day_4_what_are_swans_fans_favorite_albums_outside/"
+thread = ""
 
 
-title = "(DAY 4) What are swans fans favorite albums outside of swans?"
+title = ""
 
 # get access token from spotify_auth.py
 
-access_token = "BQC0SaQhAdhnMJIuCwwZTDwcKrxwDL1SKFsQjll1fyQU52LextEaOok3SWVhkwPczoNvrvX5sIMYSCOGzbi_kVcUeuJLBioUellhcsDzjyTsCCxrqrOGMJhTZvnLWhT52HLP5BV2Pl-1YR9jVgJYiISs_xMYnGYWMUt8mYZE6uKfVRhDEeSApA9Pibw7FTLsXSKQ4_BtSAOXS5VsgHxk9bdja9nwcFZzTNPrjWl5M3JlZnbtp7ppt8RKqg"
+access_token = ""
 
 # get user id
 

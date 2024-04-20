@@ -4,9 +4,9 @@ from praw.models import MoreComments
 
 load_dotenv()
 
-access_token = "BQCb7nd_mxOmxxSJZGoSI_LP9vbvFomCAge5OzgPVSMjmEK4KXB7VKm1RRrHsoYAoCiXrXDjqhaGGPcyywemBeV2tfGjwFT7slwgGOURiLMmD9x4Fr-O0IrxDdgE2b-0inKjo1YfEKiknkXfUDwdFc8QaELuDYvFrOM3oTWsyy3NyOyb92NnbBSTIS16QowKTfjHr-0V58eRnLuiU8VirZTyztpPWqyrWiFuj-2nOzHyU00UL-dyNRdvCQ"
+access_token = ""
 
-album_ids = ['2NnkLRaeX33d1Mn8ZLgTo8', '2GBJg7nTQs3go1w24ECKvy', '44CB4Ho4QCPH4oSGnY6yat', '6gZudQwiObndOhXqqDx5GD']
+album_ids = []
 
 track_ids = []
 

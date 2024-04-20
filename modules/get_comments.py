@@ -19,7 +19,7 @@ reddit = praw.Reddit(
     username=username,
 )
 
-url = "https://www.reddit.com/r/swans/comments/1c2n4y1/day_4_what_are_swans_fans_favorite_albums_outside/"
+url = ""
 submission = reddit.submission(url=url)
 title = submission.title
 # top level comments only

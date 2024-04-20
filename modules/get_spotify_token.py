@@ -20,7 +20,7 @@ client_secret = os.environ.get('SPOTIFY_CLIENT_SECRET')
 
 # code will be in url of redirect window
 
-code = "AQDBftnbZy0o46aB4J6iLSpLA5XLB-UW3-gSQIAM7j08iobEpC_jUyuh9mcJDx9kn40ufftKfYj_kU6er4ymJLmSPKupBaO6lBuRaedi_FURpRieJJnLMIvnIUhHZKXyP5gbwMCmtahdZh3mG7tPUdXZePaPDlHUz-ep4mdaLp5x_dw-vy8ZSv7VZ39222HtQtoPDwqKQVBS61w5L-Po4-6zWZRAWwyCDbtizyx6n1KkdaVjon58zTr5NX9o2GqOTujnjwM-"
+code = ""
 
 
 encoded_credentials = base64.b64encode(client_id.encode() + b':' + client_secret.encode()).decode("utf-8")

@@ -224,9 +224,9 @@ def add_to_playlist(album_ids, playlist_id, access_token):
 
 def main():
 
-    code = "AQD6J3q1DzQvJJIK2nHu30msoBii-20utn7-skWP7zZ3xc1TlkYtZhSwTX5RUeg4SZ8LrnGUN19TUH9DC2p2kxMIJ3Eq9WkZ3MnQWJe78CevgQNRI_6xbw8MhtCMx1SEPytwiGYsLbSTKH0xkgutmlptsCoT9Hn49brdzZez6MvfvlO4gsBMiFdAWW3XW3cis07_sq_0AiFIKmc09UrSaBHK0WSIeIwoXDAdvJ4EhBSPamlhHDYNNioQ8azqpRGz6kRJqzgC"
+    code = os.environ.get('SPOTIFY_AUTH_CODE')
 
-    thread_url = "https://www.reddit.com/r/swans/comments/1c7quov/day_10_what_are_swans_fans_favorite_albums/"
+    thread_url = os.environ.get('REDDIT_THREAD_URL')
 
     comments, title = get_reddit_comments(thread_url)
     albums =  send_to_openai(comments)
