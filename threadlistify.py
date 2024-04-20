@@ -41,7 +41,7 @@ def send_to_openai(comments):
         'Authorization': 'Bearer {}'.format(openai_key)
     }
 
-    prompt = f"The following is a comment thread from reddit. Please find all of the albums referenced in the text and put them into a python list with both the artist and the album title combined into a single element in the list. Remove any duplicates so that each album only appears in the list once. You may need to remove any punctuation or any extra info so that each line is formatted as 'artist album'  {comments}"
+    prompt = f"The following is a comment thread from reddit. Please find all of the albums referenced in the text and put them into a python list with both the artist and the album title combined into a single element in the list. There may be additional text in the comments which needs to be removed. Sometimes the comment will reference only an album. Remove any duplicates so that each album only appears in the list once. It is importatnt to remove all punctuation including parenthesis, brackets, quotes, etc. so that each line is formatted as 'artist album'  {comments}"
 
     data = {
         "model": "gpt-3.5-turbo",
@@ -54,9 +54,8 @@ def send_to_openai(comments):
     if response.status_code == 200:
         response_json = response.json()
         content = response_json['choices'][0]['message']['content']
-        # maybe change this to json.loads
-        # albums = eval(content)
-        albums = [item.strip() for item in content.split(',')]
+        # certain characters in the response may cause issues with using eval
+        albums = eval(content)
     else:
         print('Error:', response.text)
 
@@ -113,6 +112,8 @@ def get_album_ids(albums, access_token):
             print("Failed to search for album:", response.text)
     return album_ids
 
+
+
 def create_playlist(access_token, thread_url, title):
     url = "https://api.spotify.com/v1/me"
     response = requests.get(url, headers={'Authorization': f'Bearer {access_token}'})
@@ -126,7 +127,7 @@ def create_playlist(access_token, thread_url, title):
     }
     data = {
         "name": f"{title}",
-        "description": f"From reddit thread {thread_url}",
+        "description": f"Made using Threadlistify - https://github.com/jmbehlmann/threadlistify From reddit thread {thread_url}",
         "public": False
     }
 
