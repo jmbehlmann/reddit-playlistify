@@ -223,9 +223,8 @@ def add_to_playlist(album_ids, playlist_id, access_token):
         print("added an album")
 
 def main():
-
+    load_dotenv()
     code = os.environ.get('SPOTIFY_AUTH_CODE')
-
     thread_url = os.environ.get('REDDIT_THREAD_URL')
 
     comments, title = get_reddit_comments(thread_url)
