@@ -21,7 +21,7 @@ Threadlistify is a Python application that utilizes various APIs to retrieve dat
 1. Clone the repository to your local machine:
 
     ```
-    git clone https://github.com/your-username/threadlistify.git
+    git clone https://github.com/jmbehlmann/threadlistify.git
     ```
 
 2. Navigate to the project directory:
