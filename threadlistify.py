@@ -36,7 +36,7 @@ def get_reddit_comments(thread_url):
         comments += top_level_comment.body.replace('\n', '') + " "
 
     print("got reddit comments")
-    return(comments)
+    return comments, title
 
 
 # send comments to openai to return artists and albums
@@ -142,8 +142,34 @@ def get_album_ids(albums, access_token):
 
     return album_ids
 
-def create_playlist():
-    pass
+def create_playlist(access_token, thread_url, title):
+    url = "https://api.spotify.com/v1/me"
+
+    response = requests.get(url, headers={'Authorization': f'Bearer {access_token}'})
+
+    user_data = response.json()
+    user_id = user_data['id']
+    print(user_id)
+
+
+    url = f"https://api.spotify.com/v1/users/{user_id}/playlists"
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json"
+    }
+    data = {
+        "name": f"{title}",
+        "description": f"From reddit thread {thread_url}",
+        "public": False
+    }
+
+    response = requests.post(url, headers=headers, json=data)
+
+    playlist_data = response.json()
+    playlist_id = playlist_data['id']
+
+    print(f"created playlist: {title}")
+    return playlist_id
 
 
 # get track ids for each album
@@ -198,17 +224,15 @@ def add_to_playlist(album_ids, playlist_id, access_token):
 
 def main():
 
-    code = "AQCjb_frlyrse2R5vV_WL8BdekvE7pPr39YhR-JISiadmR_ksa2oR0fFNyxPIp3CUMAgpbqX0DSgh6U5U1W219BS35V0nf_WqRMs6nt73e8y_NAH5n-0IleclXz80CDp9ygKlINk7fRCp8eatE4dcOm6niKdV0MXkHigVjMHn0Ey9e36YF7COV49z_gAXTA1znEu_dLyWy2rsIqdSGfCYqnYZW4lkKdCGYUvyzwgBZxvbijUau75M88fGku0dp6GwDSHez7R"
+    code = "AQD6J3q1DzQvJJIK2nHu30msoBii-20utn7-skWP7zZ3xc1TlkYtZhSwTX5RUeg4SZ8LrnGUN19TUH9DC2p2kxMIJ3Eq9WkZ3MnQWJe78CevgQNRI_6xbw8MhtCMx1SEPytwiGYsLbSTKH0xkgutmlptsCoT9Hn49brdzZez6MvfvlO4gsBMiFdAWW3XW3cis07_sq_0AiFIKmc09UrSaBHK0WSIeIwoXDAdvJ4EhBSPamlhHDYNNioQ8azqpRGz6kRJqzgC"
 
-    playlist_id = "5nt6uJH4N89CUMSOUnse3m"
+    thread_url = "https://www.reddit.com/r/swans/comments/1c7quov/day_10_what_are_swans_fans_favorite_albums/"
 
-    thread_url = "https://www.reddit.com/r/swans/comments/1c2n4y1/day_4_what_are_swans_fans_favorite_albums_outside/"
-
-    comments = get_reddit_comments(thread_url)
+    comments, title = get_reddit_comments(thread_url)
     albums =  send_to_openai(comments)
     access_token = get_token(code)
     album_ids = get_album_ids(albums, access_token)
-    # playlist_id = create_playlist()
+    playlist_id = create_playlist(access_token, thread_url, title)
     add_to_playlist(album_ids, playlist_id, access_token)
     print("done")
 
