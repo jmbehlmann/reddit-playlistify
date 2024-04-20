@@ -1,4 +1,4 @@
-import praw, os, requests, json
+import praw, os, requests, json, base64
 from dotenv import load_dotenv
 from praw.models import MoreComments
 
@@ -78,6 +78,30 @@ def send_to_openai(comments):
 
     print("received data from openai")
     return albums
+
+def get_token(code):
+
+    client_id = os.environ.get('SPOTIFY_CLIENT_ID')
+    client_secret = os.environ.get('SPOTIFY_CLIENT_SECRET')
+
+    encoded_credentials = base64.b64encode(client_id.encode() + b':' + client_secret.encode()).decode("utf-8")
+
+    token_headers = {
+        "Authorization": "Basic " + encoded_credentials,
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+
+    token_data = {
+        "grant_type": "authorization_code",
+        "code": code,
+        "redirect_uri": "http://localhost:8080/callback"
+    }
+
+    r = requests.post("https://accounts.spotify.com/api/token", data=token_data, headers=token_headers)
+
+    access_token = r.json()["access_token"]
+
+    return access_token
 
 
 # get album ids
@@ -174,9 +198,7 @@ def add_to_playlist(album_ids, playlist_id, access_token):
 
 def main():
 
-    code = ""
-
-    access_token = "BQDnZFqQsF8JE6oIqnrKX-YYC_Abmn7pFaUaB_YgUKnaU_nJohiqQ1tb5wRv8csstUXetQf9ICWXUFI3JTKhHKqG25iVcdjnj8pS0sad5I3QjD8ArFYqvDrJBHjo3PMgWBMfZPeEiQ1PBz4o-lznh0qlZDAONWdMgYq92GyWgsERlR-fELSUFO3zF8zyGc3jsTD4aM-dWV4lhmtre6tBTckxNN83pJJtfz6OCpnt_kcS_J-ooKb57ko7ig"
+    code = "AQCjb_frlyrse2R5vV_WL8BdekvE7pPr39YhR-JISiadmR_ksa2oR0fFNyxPIp3CUMAgpbqX0DSgh6U5U1W219BS35V0nf_WqRMs6nt73e8y_NAH5n-0IleclXz80CDp9ygKlINk7fRCp8eatE4dcOm6niKdV0MXkHigVjMHn0Ey9e36YF7COV49z_gAXTA1znEu_dLyWy2rsIqdSGfCYqnYZW4lkKdCGYUvyzwgBZxvbijUau75M88fGku0dp6GwDSHez7R"
 
     playlist_id = "5nt6uJH4N89CUMSOUnse3m"
 
@@ -184,9 +206,11 @@ def main():
 
     comments = get_reddit_comments(thread_url)
     albums =  send_to_openai(comments)
+    access_token = get_token(code)
     album_ids = get_album_ids(albums, access_token)
     # playlist_id = create_playlist()
     add_to_playlist(album_ids, playlist_id, access_token)
+    print("done")
 
 if __name__ == "__main__":
     main()
