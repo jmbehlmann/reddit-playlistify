@@ -6,7 +6,7 @@ load_dotenv()
 
 playlist_id = "5nt6uJH4N89CUMSOUnse3m"
 
-access_token = "BQC0SaQhAdhnMJIuCwwZTDwcKrxwDL1SKFsQjll1fyQU52LextEaOok3SWVhkwPczoNvrvX5sIMYSCOGzbi_kVcUeuJLBioUellhcsDzjyTsCCxrqrOGMJhTZvnLWhT52HLP5BV2Pl-1YR9jVgJYiISs_xMYnGYWMUt8mYZE6uKfVRhDEeSApA9Pibw7FTLsXSKQ4_BtSAOXS5VsgHxk9bdja9nwcFZzTNPrjWl5M3JlZnbtp7ppt8RKqg"
+access_token = "BQCb7nd_mxOmxxSJZGoSI_LP9vbvFomCAge5OzgPVSMjmEK4KXB7VKm1RRrHsoYAoCiXrXDjqhaGGPcyywemBeV2tfGjwFT7slwgGOURiLMmD9x4Fr-O0IrxDdgE2b-0inKjo1YfEKiknkXfUDwdFc8QaELuDYvFrOM3oTWsyy3NyOyb92NnbBSTIS16QowKTfjHr-0V58eRnLuiU8VirZTyztpPWqyrWiFuj-2nOzHyU00UL-dyNRdvCQ"
 
 track_ids = ['7K8mX41Nub7AzBt1RwwE6d', '55sPjd9D4VelNiR70Y1cCr', '3lhAQN2KNPh4G7RZ1hS5g5', '3oNP9Gh1NY4sjqaVUaNjTQ', '6AdyaWgJliC8HJU4CseNJM', '1BNZMXjqqULiV0DmFU1B8S']
 
