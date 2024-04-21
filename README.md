@@ -39,11 +39,11 @@ Threadlistify is a Python application that utilizes various APIs to retrieve dat
 
 1. **Obtain API Credentials:**
 
-   - Create a Reddit application and obtain the client ID, client secret, password, user agent, and username. [Reddit API](https://www.reddit.com/wiki/api)
+   - Create a Reddit application and obtain the client ID, client secret, password, user agent, and username: [Reddit API](https://www.reddit.com/wiki/api)
 
-   - Create an OpenAI secret key. [OpenAI API](https://platform.openai.com/docs/quickstart?context=python)
+   - Create an OpenAI secret key: [OpenAI API](https://platform.openai.com/docs/quickstart?context=python)
 
-   - Create a Spotify app and obtain a client ID and a client secret. [Spotify API](https://developer.spotify.com/documentation/web-api/concepts/apps)
+   - Create a Spotify app and obtain a client ID and a client secret: [Spotify API](https://developer.spotify.com/documentation/web-api/concepts/apps)
 
 2. **Set Up Environment Variables:**
 
