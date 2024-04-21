@@ -66,15 +66,14 @@ Threadlistify is a Python application that utilizes various APIs to retrieve dat
 
     - Run the main application:
 
+     ```bash
+     python3 threadlistify.py
+     ```
 
-    ```bash
-    python3 threadlistify.py
-    ```
-
-    The application will open a browser window which will prompt you to authorize with Spotify. After granting access, you will be redirected to a URL. Copy the full URL and paste it into the terminal when prompted.
+     The application will open a browser window which will prompt you to authorize with Spotify. After granting access, you will be redirected to a URL. Copy the full URL and paste it into the terminal when prompted.
 
 
-    The application will gather comments from the specified Reddit thread, extract album references, search for these albums on Spotify, create a playlist, and add the albums to that playlist.
+     The application will gather comments from the specified Reddit thread, extract album references, search for these albums on Spotify, create a playlist, and add the albums to that playlist.
 
 
 ## Dependencies
