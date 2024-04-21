@@ -55,29 +55,21 @@ Threadlistify is a Python application that utilizes various APIs to retrieve dat
      OPENAI_KEY=your_openai_api_key
      SPOTIFY_CLIENT_ID=your_spotify_client_id
      SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
-     SPOTIFY_AUTH_CODE=code_from_spotify_auth
      REDDIT_THREAD_URL=url_of_thread_you_want_to_threadlistify
      ```
 
-3. **Authenticate with Spotify:**
+3. **Run the Main Application:**
 
-    - Run the `spotify_auth.py` script to obtain the authorization code needed for accessing the Spotify API:
-
-    ```bash
-    python spotify_auth.py
-    ```
-
-    Follow the prompts to authenticate with Spotify. A browser window will open with a code in the url, add that code to your .env file.
-
-4. **Run the Main Application:**
-
-    - Once you have obtained the Spotify authorization code, you can run the main application:
+    - Run the main application:
 
     ```bash
     python threadlistify.py
     ```
 
-    The application will gather comments from a specified Reddit thread, extract album references, search for these albums on Spotify, and add them to a specified playlist.
+    The application will prompt you to authorize with Spotify. A browser window will open with an authorization prompt. After granting access, you will be redirected to a URL. Copy the full URL and paste it into the terminal when prompted.
+
+
+    The application will gather comments from a specified Reddit thread, extract album references, search for these albums on Spotify, create a playlist, and add the albums to that playlist.
 
 
 ## Dependencies
