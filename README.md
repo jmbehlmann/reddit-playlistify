@@ -66,6 +66,7 @@ Threadlistify is a Python application that utilizes various APIs to retrieve dat
 
     - Run the main application:
 
+
      ```bash
      python3 threadlistify.py
      ```
