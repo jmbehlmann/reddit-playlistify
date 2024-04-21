@@ -43,7 +43,7 @@ Threadlistify is a Python application that uses various APIs to retrieve data fr
 
    - Create an OpenAI secret key: [OpenAI API](https://platform.openai.com/docs/quickstart?context=python)
 
-   - Create a Spotify app and obtain a client ID and a client secret: [Spotify API](https://developer.spotify.com/documentation/web-api/concepts/apps)
+   - Create a Spotify app and obtain the client ID and client secret: [Spotify API](https://developer.spotify.com/documentation/web-api/concepts/apps)
 
 2. **Set Up Environment Variables:**
 
@@ -66,8 +66,7 @@ Threadlistify is a Python application that uses various APIs to retrieve data fr
 
     - Run the main application:
 
-
-     ```
+     ```bash
      python3 threadlistify.py
      ```
 
