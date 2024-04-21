@@ -1,12 +1,12 @@
 # Threadlistify
 
-Threadlistify is a Python application that utilizes various APIs to retrieve data from Reddit threads, analyze comments, and interact with the Spotify API to create playlists based on albums mentioned in the thread.
+Threadlistify is a Python application that uses various APIs to retrieve data from Reddit threads, analyze comments with OpenAI, and interact with the Spotify API to create playlists based on albums mentioned in the thread.
 
 
 ## Features
 
-- **Reddit Comment Analysis:** Retrieves top-level comments from a specified Reddit.
-- **OpenAI Integration:** Utilizes OpenAI's GPT-3.5 language model to process Reddit comments and extract album names.
+- **Reddit Comment Analysis:** Retrieves top-level comments from a specified Reddit thread.
+- **OpenAI Integration:** Utilizes OpenAI's GPT-3.5 language model to process Reddit comments and extract album titles.
 - **Spotify Playlist Creation:** Interacts with the Spotify API to create playlists based on the extracted albums.
 
 ## Things you will need
