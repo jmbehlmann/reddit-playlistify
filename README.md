@@ -49,6 +49,7 @@ Threadlistify is a Python application that utilizes various APIs to retrieve dat
 
    - Create a `.env` file in the project directory.
    - Add the following environment variables to the `.env` file:
+
      ```
      CLIENT_ID=your_reddit_client_id
      CLIENT_SECRET=your_reddit_client_secret
@@ -65,11 +66,12 @@ Threadlistify is a Python application that utilizes various APIs to retrieve dat
 
     - Run the main application:
 
+
     ```bash
     python3 threadlistify.py
     ```
 
-    The application will prompt you to authorize with Spotify. A browser window will open with an authorization prompt. After granting access, you will be redirected to a URL. Copy the full URL and paste it into the terminal when prompted.
+    The application will open a browser window which will prompt you to authorize with Spotify. After granting access, you will be redirected to a URL. Copy the full URL and paste it into the terminal when prompted.
 
 
     The application will gather comments from the specified Reddit thread, extract album references, search for these albums on Spotify, create a playlist, and add the albums to that playlist.
