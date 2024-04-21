@@ -1,14 +1,13 @@
 # Threadlistify
 
-Threadlistify is a Python application that utilizes various APIs to retrieve data from Reddit threads, analyze comments, and interact with the Spotify API to create playlists based on mentioned albums.
+Threadlistify is a Python application that utilizes various APIs to retrieve data from Reddit threads, analyze comments, and interact with the Spotify API to create playlists based on albums mentioned in the thread.
 
 
 ## Features
 
-- **Reddit Comment Analysis:** Retrieves top-level comments from a specified Reddit thread and analyzes them to extract mentioned albums.
+- **Reddit Comment Analysis:** Retrieves top-level comments from a specified Reddit.
 - **OpenAI Integration:** Utilizes OpenAI's GPT-3.5 language model to process Reddit comments and extract album names.
 - **Spotify Playlist Creation:** Interacts with the Spotify API to create playlists based on the extracted albums.
-- **Environment Variable Configuration:** Utilizes environment variables for secure configuration of API credentials.
 
 ## Things you will need
 
@@ -38,9 +37,13 @@ Threadlistify is a Python application that utilizes various APIs to retrieve dat
 
 ## Usage
 
-1. **Obtain Reddit API Credentials:**
+1. **Obtain API Credentials:**
 
-   - Create a Reddit application and obtain the client ID, client secret, password, user agent, and username.
+   - Create a Reddit application and obtain the client ID, client secret, password, user agent, and username. [Reddit API](https://www.reddit.com/wiki/api)
+
+   - Create an OpenAI secret key. [OpenAI API](https://platform.openai.com/docs/quickstart?context=python)
+
+   - Create a Spotify app and obtain a client ID and a client secret. [Spotify API](https://developer.spotify.com/documentation/web-api/concepts/apps)
 
 2. **Set Up Environment Variables:**
 
@@ -63,7 +66,7 @@ Threadlistify is a Python application that utilizes various APIs to retrieve dat
     - Run the main application:
 
     ```bash
-    python threadlistify.py
+    python3 threadlistify.py
     ```
 
     The application will prompt you to authorize with Spotify. A browser window will open with an authorization prompt. After granting access, you will be redirected to a URL. Copy the full URL and paste it into the terminal when prompted.
